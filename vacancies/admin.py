@@ -2,7 +2,7 @@ from django.contrib import admin
 from . import models
 
 # Register your models here.
-admin.site.register(models.County)
+# admin.site.register(models.Metro)
 admin.site.register(models.Company)
 admin.site.register(models.Category)
 admin.site.register(models.WorkType)

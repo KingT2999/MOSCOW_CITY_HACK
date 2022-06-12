@@ -3,15 +3,15 @@ from django.shortcuts import reverse
 from accounts import models as accounts_models
 
 # Create your models here.
-class County(models.Model):
+class Metro(models.Model):
     title = models.CharField(verbose_name='Название', max_length=75, unique=True)
 
     def __str__(self):
         return self.title
     
     class Meta:
-        verbose_name = 'Округ'
-        verbose_name_plural = 'Округа'
+        verbose_name = 'Метро'
+        verbose_name_plural = 'Метро'
 
 class Company(models.Model):
     title = models.CharField(verbose_name='Название компании', max_length=100)
@@ -78,8 +78,8 @@ class Vacancy(models.Model):
     age_min = models.PositiveSmallIntegerField(verbose_name='Минимальный возраст')
     age_max = models.PositiveSmallIntegerField(verbose_name='Максимальный возраст', blank=True, null=True, default=None)
 
-    #Location
-    county = models.ForeignKey(County, verbose_name='Округ', on_delete=models.CASCADE)
+    # Location
+    metro = models.ForeignKey(Metro, verbose_name='Округ', on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.category.title} | {self.title}'
