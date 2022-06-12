@@ -8,6 +8,35 @@
     <input type="submit" value="Search">
 </form>
 
+<form action="" style="margin-top: 75px">
+    <h4>Category</h4>
+    {% for category in category_list %}
+    <input type="checkbox" name='category' value="{{category.id}}">
+    <label>{{category.title}}</label>
+    <br>
+    {% endfor %}
+    <h4>Type</h4>
+    <input type="checkbox" name='is_online'>
+    <label>online</label>
+
+    <h4>Метро</h4>
+    {% for metro in metro_list %}
+    <input type="checkbox" name="metro" value="{{metro.id}}">
+    <label>{{metro.title}}</label>
+
+    <br>
+    {% endfor %}
+
+    <h4>Age</h4>
+    <input type="checkbox" name="is_gt_18">
+    <label>Greater than 18</label>
+
+    <br>
+
+    <input type="submit" value="Search">
+</form>
+
+
 {% for vacancy in vacancy_list %}
 <a href="{{vacancy.get_absolute_url}}"><h1 style="margin: 75px;">{{vacancy.title}}</h1></a>
 {% endfor %}

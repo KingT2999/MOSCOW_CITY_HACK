@@ -79,7 +79,7 @@ class Vacancy(models.Model):
     age_max = models.PositiveSmallIntegerField(verbose_name='Максимальный возраст', blank=True, null=True, default=None)
 
     # Location
-    metro = models.ForeignKey(Metro, verbose_name='Округ', on_delete=models.CASCADE)
+    metro = models.ForeignKey(Metro, verbose_name='Метро', on_delete=models.CASCADE)
     address = models.CharField(verbose_name='Адрес', max_length=400)
 
     def __str__(self):
