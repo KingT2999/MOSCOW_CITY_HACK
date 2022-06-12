@@ -9,7 +9,7 @@ def avatar_directory_path(user, filename):
     return f'accounts/avatars/{user.id}.{ext}'
 
 class User(AbstractUser):
-    username = models.CharField(max_length=75, blank=True, null=True, default=None)
+    username = models.CharField(max_length=75, unique=True, blank=True, null=True, default=None)
 
     avatar = models.ImageField(verbose_name='Аватарка', upload_to=avatar_directory_path, blank=True, default='accounts/avatars/default.svg')
 
@@ -21,6 +21,9 @@ class User(AbstractUser):
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
+
+    def __str__(self):
+        return self.email
 
 class Volunteer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -54,8 +57,14 @@ class Volunteer(models.Model):
         verbose_name = 'Волонтёр'
         verbose_name_plural = 'Волонтёры'
 
+def org_img_upload(instance, filename):
+    ext = filename.split('.')[-1]
+    return f'accounts/org_img/{instance.user.id}.{ext}'
+
 class Organization(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    title = models.CharField(verbose_name='Название организации', max_length=255)
+    img = models.ImageField(verbose_name='Изображение организации', upload_to=org_img_upload)
 
     def __str__(self):
         return f'Organization | {self.user}'

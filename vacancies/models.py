@@ -80,6 +80,7 @@ class Vacancy(models.Model):
 
     # Location
     metro = models.ForeignKey(Metro, verbose_name='Округ', on_delete=models.CASCADE)
+    address = models.CharField(verbose_name='Адрес', max_length=400)
 
     def __str__(self):
         return f'{self.category.title} | {self.title}'
@@ -90,3 +91,15 @@ class Vacancy(models.Model):
     class Meta:
         verbose_name = 'Вакансия'
         verbose_name_plural = 'Вакансии'
+
+class Request(models.Model):
+    vacancy = models.ForeignKey(Vacancy, verbose_name='Вакансия', on_delete=models.CASCADE)
+    user = models.ForeignKey(accounts_models.User, verbose_name='Волонтёр', on_delete=models.CASCADE)
+    comment = models.TextField(verbose_name='Сопроводительный комментарий')
+
+    def __str__(self):
+        return f'{self.vacancy} | {self.user}'
+    
+    class Meta:
+        verbose_name = 'Запрос'
+        verbose_name_plural = 'Запросы'
