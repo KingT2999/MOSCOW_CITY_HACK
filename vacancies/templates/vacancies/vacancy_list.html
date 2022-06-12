@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% for vacancy in vacancy_list %}
+<h1 style="margin: 75px;">{{vacancy.title}}</h1>
+{% endfor %}
+
+{% endblock content %}

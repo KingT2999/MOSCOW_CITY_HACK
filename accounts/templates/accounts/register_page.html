@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<section class="section__sett">
+    <img loading="lazy" src="{% static 'accounts/register_page/img/image 19.png' %}" class="image-asd" width="300" height="300" alt="">
+    <div class="container container__pad">
+        <form method="POST" action="#" class="form" style="min-height: 700px;">
+            {% csrf_token %}
+
+            <h1 class="register register__sett">Регистрация</h1>
+            <label class="form__label">
+                <input type="text" name="first_name" class="input-reset form__input form_padding" placeholder="Ваше имя">
+            </label>
+            <label class="form__label">
+                <input type="text" name="last_name" class="input-reset form__input form_padding" placeholder="Ваша фамилия">
+            </label>
+            <label class="form__label">
+                <input type="text" name="email" class="input-reset form__input form_padding" placeholder="Ваш Email">
+            </label>
+            <label class="form__label password">
+                <input type="password" name="password1" class="input-reset form__input form_padding" placeholder="Пароль" id="password-input">
+            </label>
+            <label class="form__label password">
+                <input type="password" name="password2" class="input-reset form__input form_padding" placeholder="Повторите Пароль" id="password-input">
+            </label>
+            <label for="Дата рождения" class="form__label">
+                <input type="text" name="birth_date" class="input-reset form__input form_padding" placeholder="Дата рождения">
+            </label>
+
+            <input type="checkbox" class="custom-checkbox" id="happy" name="happy" value="yes"> 
+            <label for="happy" class="regulations__sett">
+            <ul class="link-reset nav__list">
+                <li class="nav__item">Я согласен (-а)</li>
+                <li class="nav__item"><a href="" class="nav__item-sett">с правилами сайта</a></li>
+            </ul>
+            </label>
+
+
+            <button class="btn-reset btn" style="background-color: #FFD368;">Регистрация</button>
+            <ul class="link-reset nav__list account">
+            <li class="nav__item">Уже есть аккаунт?</li>
+            <li class="nav__item"><a href="{% url 'accounts:login_page' %}" class="nav__item-sett">Войдите</a></li>
+            </ul>
+        </form>
+    </div>
+</section>
+{% endblock content %}

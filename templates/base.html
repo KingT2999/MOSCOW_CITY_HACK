@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru" class="page">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <meta name="theme-color" content="#111111">
+      <title>Мос Волонтёр</title>
+      <link rel="preload" href="{% static 'accounts/register_page/fonts/MullerRegular.woff2' %}" as="font" type="font/woff2" crossorigin>
+      <link rel="preload" href="{% static 'accounts/register_page/fonts/Rubik-Bold.woff2' %}" as="font" type="font/woff2" crossorigin>
+      <link rel="preload" href="{% static 'accounts/register_page/fonts/Rubik-Medium.woff2' %}" as="font" type="font/woff2" crossorigin>
+      <link rel="preload" href="{% static 'accounts/register_page/fonts/Rubik-Regular.woff2' %}" as="font" type="font/woff2" crossorigin>
+      <link rel="stylesheet" href="{% static 'accounts/register_page/css/vendor.css' %}">
+      <link rel="stylesheet" href="{% static 'accounts/register_page/css/main.css' %}">
+
+      {% block styles %}
+      {% endblock styles %}
+   </head>
+   <body class="page__body">
+      <div class="site-container">
+         {% include 'header.html' %}
+          
+         {% if messages %}
+         <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+         </ul>
+         {% endif %}
+
+         <main class="main">
+            {% block content %}
+            {% endblock content %}
+         </main>
+         {% include 'footer.html' %}
+      </div>
+   </body>
+</html>
