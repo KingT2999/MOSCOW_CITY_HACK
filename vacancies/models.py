@@ -95,7 +95,7 @@ class Vacancy(models.Model):
 class Request(models.Model):
     vacancy = models.ForeignKey(Vacancy, verbose_name='Вакансия', on_delete=models.CASCADE)
     user = models.ForeignKey(accounts_models.User, verbose_name='Волонтёр', on_delete=models.CASCADE)
-    comment = models.TextField(verbose_name='Сопроводительный комментарий')
+    comment = models.TextField(verbose_name='Сопроводительный комментарий', blank=True)
 
     def __str__(self):
         return f'{self.vacancy} | {self.user}'

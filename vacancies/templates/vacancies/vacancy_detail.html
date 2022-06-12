@@ -1,6 +1,360 @@
-<center>
-    <h2>#{{vacancy.category}}</h2>
-    <h1>{{vacancy.title}}</h1>
-    <em>Время проведения: {{vacancy.time_start}}{% if vacancy.time_end %} - {{vacancy.time_end}}{% endif %}</em>
-    <p>{{vacancy.description|linebreaks}}</p>
-</center>
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'vacancies/vacancy_detail/css/vendor.css' %}">
+<link rel="stylesheet" href="{% static 'vacancies/vacancy_detail/css/main.css' %}">
+
+<style>html {
+  overflow-x: hidden;
+  }
+</style>
+{% endblock styles %}
+
+{% block content %}
+<section>
+  <div class="container container__sett">
+    <div class="help">
+        <ul class="help__list li-reset help__fle">
+          <li class="help__item">
+              <h1 class="help__title">{{vacancy.title}}</h1>
+              <ul class="li-reset help__pos help__flex">
+                <li class="help__flex">
+                    <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/svg/location(2).svg' %}" class="images" width="16" height="16" alt="">
+                    <p class="location-sett">{{vacancy.address}}</p>
+                </li>
+                <li class="help__flex">
+                    <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/svg/Vector.svg' %}" class="images" width="" height="" alt="">
+                    <p class="location-sett location__mt">{{vacancy.metro.title}}</p>
+                </li>
+              </ul>
+          </li>
+          <li class="help__item">
+              <ul class="li-reset help__pos help__flex help__items">
+                <li class="help__flex"><img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/svg/export.svg' %}" class="images" width="16" height="16" alt=""> <a href="" class="location-sett link-loc">Поделиться</a></li>
+                <li class="help__flex"><img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/svg/heart.svg' %}" class="images" width="" height="" alt=""> <a href="" class="location-sett link-loc">Сохранить</a></li>
+              </ul>
+          </li>
+        </ul>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container container__setting">
+    <div class="dog">
+        <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/Rectangle3181.png' %}" class="imagess" width="1132" height="440" alt="">
+        <ul class="li-reset help__flex dog__pos">
+          <li><a href="#popup"><img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/Frame47.png' %}" class="imagesa" width="150" height="80" alt=""></a></li>
+          <li><a href=""><img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/Group48144.png' %}" class="image" width="30" height="30" alt=""></a></li>
+        </ul>
+        <ul class="li-reset dog__list">
+          <li class="dog__item">
+              <p class="data">Дата проведения</p>
+          </li>
+          <li class="dog__item">
+              <p class="data-data">{{vacancy.time_start}} до {{vacancy.time_end}}</p>
+          </li>
+        </ul>
+    </div>
+  </div>
+</section>
+<div class="container">
+  <div class="row">
+    <div class="col-7">
+        <section class="section-sec">
+          <h2 class="skills">Необходимые навыки</h2>
+          <div class="skills__list">
+            {% for skill in vacancy.requirements.all %}
+              <div class="skills__btn">
+                <p class="">{{skill.title}}</p>
+              </div>
+            {% endfor %}
+          </div>
+          {% comment %} <div class="skills__list asdd">
+              <div class="skills__btn">
+                <p class="">Зоопсихология</p>
+              </div>
+              <div class="skills__btn">
+                <p class="">Оринтология</p>
+              </div>
+              <div class="skills__btn">
+                <p class="">Дрессировка</p>
+              </div>
+              <div class="skills__btn">
+                <p class="">Грумминг</p>
+              </div>
+          </div> {% endcomment %}
+          <hr class="hr-setting">
+        </section>
+        <section>
+          <div class="posd">
+              <div class="comand comand__flex">
+                <h2 class="skills">Команда волонтеров</h2>
+                <a href="" class="comand__more">Подробнее</a>
+              </div>
+              <div class="comand__list">
+                <ul class="li-reset comand__list-flex">
+                    <li class="comand__item comand__item-f1"><a href=""><img src="{% static 'vacancies/vacancy_detail/img/Ellipse23.png'%}" alt=""></a></li>
+                    <li class="comand__item comand__item-f2"><a href=""><img src="{%static 'vacancies/vacancy_detail/img/Ellipse24.png'%}" alt=""></a></li>
+                    <li class="comand__item comand__item-f3"><a href=""><img src="{%static 'vacancies/vacancy_detail/img/Ellipse25.png'%}" alt=""></a></li>
+                    <li class="comand__item comand__item-f4"><a href=""><img src="{%static 'vacancies/vacancy_detail/img/Ellipse26.png'%}" alt=""></a></li>
+                    <li class="comand__item comand__item-f5"><a href=""><img src="{%static 'vacancies/vacancy_detail/img/Ellipse27.png'%}" alt=""></a></li>
+                    <li class="comand__item comand__item-f6"><a href=""><img src="{% static 'vacancies/vacancy_detail/img/Ellipse28.png'%}" alt=""></a></li>
+                    <li class="comand__item comand__item-f7">
+                      <a href="">
+                          <p class="comand__num">+15</p>
+                      </a>
+                    </li>
+                </ul>
+              </div>
+          </div>
+          <div class="comand__title">
+              <p class="comand__text">{{vacancy.request_set.count}} волонтёр откликнулся на это мероприятие</p>
+          </div>
+          <hr class="hr-setting">
+        </section>
+        <section>
+          <h2 class="skills skills__descr">Описание</h2>
+          <div class="comand__title">
+              <p class="comand__text">{{vacancy.description}}</p>
+          </div>
+          <div class="skills__poss">
+              <h2 class="skills">Задачи</h2>
+              <div class="skills__list">
+                <div class="skills__btn">
+                    <p class="">Уход за животными</p>
+                </div>
+                <div class="skills__btn">
+                    <p class="">Лечение животных</p>
+                </div>
+                <div class="skills__btn">
+                    <p class="">Социализация животных</p>
+                </div>
+              </div>
+              <div class="skills__list asdd">
+                <div class="skills__btn">
+                    <p class="">Навигация, информирование и сбор участников</p>
+                </div>
+              </div>
+          </div>
+          <div class="skills__poss">
+              <h2 class="skills">Требования</h2>
+              <div class="skills__list">
+                <div class="skills__btn">
+                    <p class="">Возраст {{vacancy.age_min}}+</p>
+                </div>
+                {% for skill in vacancy.requirements.all %}
+                <div class="skills__btn">
+                    <p class="">Готовность помогать на улице в течение смены</p>
+                </div>
+                {% endfor %}
+              </div>
+          </div>
+          <div class="skills__poss">
+              <h2 class="skills">Снаряжение</h2>
+              <div class="skills__list">
+                <div class="skills__btn">
+                    <p class="">Перчатки</p>
+                </div>
+                <div class="skills__btn">
+                    <p class="">Удобная обувь</p>
+                </div>
+                <div class="skills__btn">
+                    <p class="">Маска</p>
+                </div>
+                <div class="skills__btn">
+                    <p class="">Экипировка</p>
+                </div>
+              </div>
+          </div>
+          <div class="skills__poss">
+              <h2 class="skills">Вознаграждение</h2>
+              <div class="skills__list">
+                <div class="skills__btn btn__color1 d-flex">
+                    <img src="{% static 'vacancies/vacancy_detail/img/svg/bus.svg' %}" alt="" class="img-vos">
+                    <p class="">Бесплатный проездной на месяц</p>
+                </div>
+                <div class="skills__btn btn__color2 d-flex">
+                    <img src="{% static 'vacancies/vacancy_detail/img/svg/Hotdog.svg' %}" alt="" class="img-vos">
+                    <p class="">Бесплатное питание</p>
+                </div>
+              </div>
+              <div class="skills__list">
+                <div class="skills__btn btn__color3 d-flex">
+                    <img src="{% static 'vacancies/vacancy_detail/img/svg/medalstar.svg' %}" alt="" class="img-vos">
+                    <p class="">Благодарственные письма</p>
+                </div>
+              </div>
+          </div>
+        </section>
+        <section>
+          <h1 class="organizer">Организатор</h1>
+          <div class="organizer__flexallsb">
+              <div class="organizer__content">
+                <h2 class="skills">Благотворительный фонд<br>«МыВместе»</h2>
+                <ul class="li-reset organizer__list organizer__flex">
+                    <li class="organizer__item organizer__flex">
+                      <img src="{% static 'vacancies/vacancy_detail/img/svg/gulka.svg' %}" alt="" class="img">
+                      <p class="organizer__text">Рейтинг:<span class="organizer__text-span">4.8</span></p>
+                    </li>
+                    <li class="organizer__item">
+                      <a href="">
+                          <p class="organizer__text ivent">19 мероприяти</p>
+                      </a>
+                    </li>
+                    <li class="organizer__item">
+                      <a href="">
+                          <p class="organizer__text ivent">75 отзывов</p>
+                      </a>
+                    </li>
+                </ul>
+              </div>
+              <div class="organizer__logo"><img src="{% static 'vacancies/vacancy_detail/img/svg/orglogo.svg' %}" alt=""></div>
+          </div>
+          <div class="organizer__contact">
+              <h2 class="skills">Контакты</h2>
+              <ul class="li-reset organizer__list organizer__flex">
+                <li class="organizer__item organizer__flex">
+                    <img src="{% static 'vacancies/vacancy_detail/img/svg/sms.svg' %}" alt="" class="img-vos ased"> 
+                    <a href="">
+                      <p class="organizer__texts ivent">help@animals</p>
+                    </a>
+                </li>
+                <li class="organizer__item organizer__flex">
+                    <img src="{% static 'vacancies/vacancy_detail/img/svg/call.svg' %}" alt="" class="img-vos ased"> 
+                    <a href="">
+                      <p class="organizer__texts ivent">+7 499 111-22-33</p>
+                    </a>
+                </li>
+              </ul>
+          </div>
+          <hr class="hr-setting">
+        </section>
+    </div>
+    <div class="col-5">
+        <form method="POST" class="form form__sett">
+          {% csrf_token %}
+
+          <h1 class="dobro">Регистрация на мероприятие</h1>
+          <select name="dog-names" id="dog-names" class="smena">
+              <option name="change">Выбор смены</option>
+              <option>{{vacancy.time_start}} - {{vacancy.time_end}}</option>
+          </select>
+          <textarea name="comment" id="textarea" cols="30" rows="10" class="dog-msrgin textarea" placeholder="Сопроводительный коментарий"></textarea>
+          <button class="btns reg__btn dog-msrgin" data-graph-path="form" {% if is_participate %}disabled{% endif %}>Откликнуться</button>
+        </form>
+        <div class="" style="margin-left: 38%; margin-top: 16px;"><a href="" class="style-drop" style="color: var(--dark-color); align-items: center;
+          text-align: center;">Пожаловаться на обьявление</a></div>
+    </div>
+  </div>
+  <section>
+    <h1 class="help__title Vacancy">Похожие задания</h1>
+    <ul class="li-reset d-flex">
+        <li class="block-teg-work">
+          <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/Rectangle 3183.png' %}" class="image" width="236" height="221" alt="">
+          <p class="location__title" style="color: var(--dark-color); font-weight: 700; margin-top: 13px;">Общероссийский форум идей «Лига Будущего»</p>
+          <div class="adr">
+              <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/svg/location(2).svg' %}" class="location2" width="" height="" alt="">
+              <p class="location__title" style="color: var(--hz-color); margin: 0;">м. Царицыно, Михневская<br>улица, 8</p>
+          </div>
+          <div class="adrs">
+              <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/svg/location(2).svg' %}" class="location3" width="" height="" alt="">
+              <p class="location__title" style="color: var(--hz-color); margin: 0;">20–27 июня, 8:30–22:00</p>
+          </div>
+        </li>
+        <li class="block-teg-work">
+          <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/cat.png' %}" class="image" width="236" height="221" alt="">
+          <p class="location__title" style="color: var(--dark-color); font-weight: 700; margin-top: 13px;">Уши, лапы и хвост вот мои документы!</p>
+          <div class="adr">
+              <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/svg/location(2).svg' %}" class="location2" width="" height="" alt="">
+              <p class="location__title" style="color: var(--hz-color); margin: 0;">м. Бабушкинская,<br>Осташковская ул., 14c2,</p>
+          </div>
+          <div class="adrs">
+              <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/svg/location(2).svg' %}" class="location3" width="" height="" alt="">
+              <p class="location__title" style="color: var(--hz-color); margin: 0;">20–27 июня, 8:30–22:00</p>
+          </div>
+        </li>
+        <li class="block-teg-work">
+          <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/yastreb.png' %}" class="image" width="236" height="221" alt="">
+          <p class="location__title" style="color: var(--dark-color); font-weight: 700; margin-top: 13px;">Строительство соколиного госпиталя</p>
+          <div class="adr">
+              <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/svg/location(2).svg' %}" class="location2" width="" height="" alt="">
+              <p class="location__title" style="color: var(--hz-color); margin: 0;">м. Алтуфьево,<br>Проектируемый проспект</p>
+          </div>
+          <div class="adrs">
+              <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/svg/location(2).svg' %}" class="location3" width="" height="" alt="">
+              <p class="location__title" style="color: var(--hz-color); margin: 0;">20–27 июня, 8:30–22:00</p>
+          </div>
+        </li>
+        <li class="block-teg-work">
+          <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/miniDog.png' %}" class="image" width="236" height="221" alt="">
+          <p class="location__title" style="color: var(--dark-color); font-weight: 700; margin-top: 13px;">Пристройство бездомных кошек</p>
+          <div class="adr">
+              <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/svg/location(2).svg' %}" class="location2" width="" height="" alt="">
+              <p class="location__title" style="color: var(--hz-color); margin: 0;">м. Царицыно,<br>Михневская улица, 8</p>
+          </div>
+          <div class="adrs">
+              <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/svg/location(2).svg' %}" class="location3" width="" height="" alt="">
+              <p class="location__title" style="color: var(--hz-color); margin: 0;">20–27 июня, 8:30–22:00</p>
+          </div>
+        </li>
+    </ul>
+  </section>
+</div>
+</main>
+<!-- <section>
+<script>
+// после загрузки страницы
+window.addEventListener('load', function () {
+
+  // элемент, содержащий контент модального окна (например, имеющий id="modal")
+  const elemModal = document.querySelector('#modal');
+  // активируем элемент в качестве модального окна с параметрами по умолчанию
+  const modal = new bootstrap.Modal(elemModal);
+  // откроем модальное окно
+  modal.show();
+
+});
+</script>
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="popup__contant">
+      <div class="Help__flex">
+        <div class="">
+          <div class="popup__title">Нужна товоя помощь</div>
+          <div class="popup__text">
+            В радиусе 1 км есть мероприятия, где твоя помощь будет очень кстати
+          </div>
+        </div>
+        <button type="button" class="btn-close bntn-closs" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <img src="./img/Frame44.png" alt="" class="metro">
+      <div class="popup__list">
+        <ul class="li-reset">
+          <li class="popup__svg">
+            <img src="./img/svg/Ani.svg" alt="">
+            <p class="popup__ivent">5 мероприятия</p>
+          </li>
+          <li class="popup__svg">
+            <img src="./img/svg/Eco.svg" alt="">
+            <p class="popup__ivent">3 мероприятия</p>
+          </li>
+          <li class="popup__svg">
+            <img src="./img/svg/Edu.svg" alt="">
+            <p class="popup__ivent">8 мероприятия</p>
+          </li>
+        </ul>
+      </div>
+      <a href="https:/youtube.com">
+        <div class="button">
+          <p class="button__text">Продолжить</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+</div>
+</section> -->
+{% endblock content %}

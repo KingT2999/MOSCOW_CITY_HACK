@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
 from .models import Vacancy, Category, Metro
+from .forms import RequestForm
 
 # Create your views here.
 def vacancy_list(request):
@@ -27,7 +28,8 @@ def vacancy_list(request):
 
     # Is Online Filter
     is_online = request.GET.get('is_online') is not None
-    context['vacancy_list'] = context['vacancy_list'].filter(is_online=is_online)
+    if is_online:
+        context['vacancy_list'] = context['vacancy_list'].filter(is_online=is_online)
 
     # Metro Filter
     metro_filter_list = request.GET.getlist('metro')
@@ -48,5 +50,25 @@ def vacancy_detail(request, id):
     context = {
         'vacancy': get_object_or_404(Vacancy, id=id),
     }
+    context['is_participate'] = False
+
+    if request.user.is_authenticated:
+        for req in context['vacancy'].request_set.all():
+            if request.user == req.user:
+                context['is_participate'] = True
+                break
+
+    if request.method == 'POST':
+        if not request.user.is_authenticated:
+            return redirect('accounts:login_page')
+        
+        form = RequestForm(request.POST)
+        if form.is_valid():
+            req = form.save(commit=False)
+            req.vacancy = context['vacancy']
+            req.user = request.user
+            req.save()
+
+            return redirect('vacancies:vacancy_detail', id=id)
 
     return render(request, 'vacancies/vacancy_detail.html', context)
