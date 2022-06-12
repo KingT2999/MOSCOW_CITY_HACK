@@ -1,7 +1,7 @@
 {% load static %}
 <header class="header">
     <div class="container header__container">
-       <a href="{% url 'vacancies:vacancy_list' %}" class="logo"><img loading="lazy" src="{% static 'accounts/register_page/img/svg/logo.svg' %}" class="image" width="83" height="32" alt="Логотип RoboSchool"></a>
+       <a href="{% url 'vacancies:vacancy_list' %}" class="logo"><img loading="lazy" src="{% static 'logo.svg' %}" class="image" width="83" height="32" alt="Логотип RoboSchool"></a>
        <nav class="nav" title="Главное меню" data-menu>
           <ul class="list-reset nav__list">
              {% if not request.user.is_authenticated %}

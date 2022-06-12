@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 def unauthenticated_user(view_func):
     def wrapper_func(request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect('accounts:personal_page')
+            return redirect('vacancies:vacancy_list')
 
         return view_func(request, *args, **kwargs)
     

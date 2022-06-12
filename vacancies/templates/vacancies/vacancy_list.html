@@ -3,6 +3,11 @@
 
 {% block content %}
 
+<form action="" style="margin-top: 75px">
+    <input type="text" name="q" placeholder="Search">
+    <input type="submit" value="Search">
+</form>
+
 {% for vacancy in vacancy_list %}
 <a href="{{vacancy.get_absolute_url}}"><h1 style="margin: 75px;">{{vacancy.title}}</h1></a>
 {% endfor %}

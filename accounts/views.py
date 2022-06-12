@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from .decorators import unauthenticated_user
 from .models import Volunteer
 from .forms import *
 
 # Create your views here.
+@unauthenticated_user
 def register_page(request):
     context = {}
 
@@ -25,6 +27,7 @@ def register_page(request):
 
     return render(request, 'accounts/register_page.html', context)
 
+@unauthenticated_user
 def login_page(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -35,7 +38,7 @@ def login_page(request):
         if user is not None:
             login(request, user)
 
-            return redirect('accounts:register_page')
+            return redirect('vacancies:vacancy_list')
         else:
             messages.error(request, 'Имя пользователья и/или пароль введены не правильно')
 
