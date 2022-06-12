@@ -1,0 +1,6 @@
+<center>
+    <h2>#{{vacancy.category}}</h2>
+    <h1>{{vacancy.title}}</h1>
+    <em>Время проведения: {{vacancy.time_start}}{% if vacancy.time_end %} - {{vacancy.time_end}}{% endif %}</em>
+    <p>{{vacancy.description|linebreaks}}</p>
+</center>

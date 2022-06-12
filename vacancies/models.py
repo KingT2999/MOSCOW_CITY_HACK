@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import reverse
 from accounts import models as accounts_models
 
 # Create your models here.
@@ -61,6 +62,11 @@ class Vacancy(models.Model):
     category = models.ForeignKey(Category, verbose_name='Направление вакансии', on_delete=models.CASCADE)
     img = models.ImageField(verbose_name='Изображение', upload_to=vacancy_img_upload_path, blank=True, null=True, default=None)
     title = models.CharField(verbose_name='Название', max_length=255)
+
+    # Time
+    time_start = models.DateTimeField(verbose_name='Время начала')
+    time_end = models.DateTimeField(verbose_name='Время завершения', blank=True, null=True, default=None)
+
     description = models.TextField(verbose_name='Описание')
     max_people_count = models.PositiveSmallIntegerField(verbose_name='Максимальное количество людей')
     is_online = models.BooleanField(verbose_name='Онлайн', help_text='Способ участия')
@@ -77,6 +83,9 @@ class Vacancy(models.Model):
 
     def __str__(self):
         return f'{self.category.title} | {self.title}'
+
+    def get_absolute_url(self):
+        return reverse('vacancies:vacancy_detail', kwargs={'id': self.id})
     
     class Meta:
         verbose_name = 'Вакансия'

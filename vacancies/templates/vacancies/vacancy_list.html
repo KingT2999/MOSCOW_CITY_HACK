@@ -4,7 +4,7 @@
 {% block content %}
 
 {% for vacancy in vacancy_list %}
-<h1 style="margin: 75px;">{{vacancy.title}}</h1>
+<a href="{{vacancy.get_absolute_url}}"><h1 style="margin: 75px;">{{vacancy.title}}</h1></a>
 {% endfor %}
 
 {% endblock content %}
