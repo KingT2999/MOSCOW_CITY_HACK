@@ -149,27 +149,16 @@
                 </div>
                 {% for skill in vacancy.requirements.all %}
                 <div class="skills__btn">
-                    <p class="">Готовность помогать на улице в течение смены</p>
+                    <p class="">{{skill.title}}</p>
                 </div>
                 {% endfor %}
               </div>
           </div>
           <div class="skills__poss">
               <h2 class="skills">Снаряжение</h2>
-              <div class="skills__list">
-                <div class="skills__btn">
-                    <p class="">Перчатки</p>
-                </div>
-                <div class="skills__btn">
-                    <p class="">Удобная обувь</p>
-                </div>
-                <div class="skills__btn">
-                    <p class="">Маска</p>
-                </div>
-                <div class="skills__btn">
-                    <p class="">Экипировка</p>
-                </div>
-              </div>
+              <div class="comand__title">
+                <p class="comand__text">{{vacancy.service}}</p>
+            </div>
           </div>
           <div class="skills__poss">
               <h2 class="skills">Вознаграждение</h2>
@@ -213,7 +202,9 @@
                     </li>
                 </ul>
               </div>
-              <div class="organizer__logo"><img src="{% static 'vacancies/vacancy_detail/img/svg/orglogo.svg' %}" alt=""></div>
+              <div class="organizer__logo"><img
+                style="width: 100px; height: 100px; border-radius: 50%;"
+                src="{{vacancy.author.img.url}}" alt=""></div>
           </div>
           <div class="organizer__contact">
               <h2 class="skills">Контакты</h2>
@@ -221,13 +212,13 @@
                 <li class="organizer__item organizer__flex">
                     <img src="{% static 'vacancies/vacancy_detail/img/svg/sms.svg' %}" alt="" class="img-vos ased"> 
                     <a href="">
-                      <p class="organizer__texts ivent">help@animals</p>
+                      <p class="organizer__texts ivent">{{vacancy.author.user.email}}</p>
                     </a>
                 </li>
                 <li class="organizer__item organizer__flex">
                     <img src="{% static 'vacancies/vacancy_detail/img/svg/call.svg' %}" alt="" class="img-vos ased"> 
                     <a href="">
-                      <p class="organizer__texts ivent">+7 499 111-22-33</p>
+                      <p class="organizer__texts ivent">{{vacancy.author.user.phone}}</p>
                     </a>
                 </li>
               </ul>
