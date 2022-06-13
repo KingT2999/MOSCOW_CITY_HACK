@@ -44,7 +44,9 @@
 <section class="section">
   <div class="container container__setting">
     <div class="dog">
-        <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/Rectangle3181.png' %}" class="imagess" width="1132" height="440" alt="">
+        <img
+        style="max-width: 1132px; max-height: 440px; width: 100%; height: 100%; border-radius: 24px;"
+        loading="lazy" src="{{vacancy.img.url}}" class="imagess" width="1132px" height="440px" alt="">
         <ul class="li-reset help__flex dog__pos">
           <li><a href="#popup"><img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/Frame47.png' %}" class="imagesa" width="150" height="80" alt=""></a></li>
           <li><a href=""><img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/Group48144.png' %}" class="image" width="30" height="30" alt=""></a></li>
@@ -252,9 +254,12 @@
   <section>
     <h1 class="help__title Vacancy">Похожие задания</h1>
     <ul class="li-reset d-flex">
+      {% for vacancy in similar_vacancy_list %}
+      
         <li class="block-teg-work">
-          <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/Rectangle 3183.png' %}" class="image" width="236" height="221" alt="">
-          <p class="location__title" style="color: var(--dark-color); font-weight: 700; margin-top: 13px;">Общероссийский форум идей «Лига Будущего»</p>
+          <a href="{{vacancy.get_absolute_url}}">
+          <img style="border-radius: 15px;" loading="lazy" src="{{vacancy.img.url}}" class="image" width="236" height="221" alt="">
+          <p class="location__title" style="color: var(--dark-color); font-weight: 700; margin-top: 13px;">{{vacancy.title}}</p>
           <div class="adr">
               <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/svg/location(2).svg' %}" class="location2" width="" height="" alt="">
               <p class="location__title" style="color: var(--hz-color); margin: 0;">м. Царицыно, Михневская<br>улица, 8</p>
@@ -263,43 +268,9 @@
               <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/svg/location(2).svg' %}" class="location3" width="" height="" alt="">
               <p class="location__title" style="color: var(--hz-color); margin: 0;">20–27 июня, 8:30–22:00</p>
           </div>
+          </a>
         </li>
-        <li class="block-teg-work">
-          <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/cat.png' %}" class="image" width="236" height="221" alt="">
-          <p class="location__title" style="color: var(--dark-color); font-weight: 700; margin-top: 13px;">Уши, лапы и хвост вот мои документы!</p>
-          <div class="adr">
-              <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/svg/location(2).svg' %}" class="location2" width="" height="" alt="">
-              <p class="location__title" style="color: var(--hz-color); margin: 0;">м. Бабушкинская,<br>Осташковская ул., 14c2,</p>
-          </div>
-          <div class="adrs">
-              <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/svg/location(2).svg' %}" class="location3" width="" height="" alt="">
-              <p class="location__title" style="color: var(--hz-color); margin: 0;">20–27 июня, 8:30–22:00</p>
-          </div>
-        </li>
-        <li class="block-teg-work">
-          <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/yastreb.png' %}" class="image" width="236" height="221" alt="">
-          <p class="location__title" style="color: var(--dark-color); font-weight: 700; margin-top: 13px;">Строительство соколиного госпиталя</p>
-          <div class="adr">
-              <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/svg/location(2).svg' %}" class="location2" width="" height="" alt="">
-              <p class="location__title" style="color: var(--hz-color); margin: 0;">м. Алтуфьево,<br>Проектируемый проспект</p>
-          </div>
-          <div class="adrs">
-              <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/svg/location(2).svg' %}" class="location3" width="" height="" alt="">
-              <p class="location__title" style="color: var(--hz-color); margin: 0;">20–27 июня, 8:30–22:00</p>
-          </div>
-        </li>
-        <li class="block-teg-work">
-          <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/miniDog.png' %}" class="image" width="236" height="221" alt="">
-          <p class="location__title" style="color: var(--dark-color); font-weight: 700; margin-top: 13px;">Пристройство бездомных кошек</p>
-          <div class="adr">
-              <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/svg/location(2).svg' %}" class="location2" width="" height="" alt="">
-              <p class="location__title" style="color: var(--hz-color); margin: 0;">м. Царицыно,<br>Михневская улица, 8</p>
-          </div>
-          <div class="adrs">
-              <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/svg/location(2).svg' %}" class="location3" width="" height="" alt="">
-              <p class="location__title" style="color: var(--hz-color); margin: 0;">20–27 июня, 8:30–22:00</p>
-          </div>
-        </li>
+      {% endfor %}
     </ul>
   </section>
 </div>

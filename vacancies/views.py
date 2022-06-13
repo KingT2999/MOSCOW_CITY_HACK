@@ -70,5 +70,7 @@ def vacancy_detail(request, id):
             req.save()
 
             return redirect('vacancies:vacancy_detail', id=id)
+    
+    context['similar_vacancy_list'] = Vacancy.objects.filter(category=context['vacancy'].category)[:4]
 
     return render(request, 'vacancies/vacancy_detail.html', context)

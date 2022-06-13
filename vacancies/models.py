@@ -60,7 +60,7 @@ def vacancy_img_upload_path(instance, filename):
 class Vacancy(models.Model):
     author = models.ForeignKey(accounts_models.Organization, verbose_name='Автор', on_delete=models.CASCADE)
     category = models.ForeignKey(Category, verbose_name='Направление вакансии', on_delete=models.CASCADE)
-    img = models.ImageField(verbose_name='Изображение', upload_to=vacancy_img_upload_path, blank=True, null=True, default=None)
+    img = models.ImageField(verbose_name='Изображение', upload_to=vacancy_img_upload_path, blank=True, default='vacansies/vacansy_img/default.jpg')
     title = models.CharField(verbose_name='Название', max_length=255)
 
     # Time
