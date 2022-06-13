@@ -60,7 +60,7 @@ def vacancy_img_upload_path(instance, filename):
 class Vacancy(models.Model):
     author = models.ForeignKey(accounts_models.Organization, verbose_name='Автор', on_delete=models.CASCADE)
     category = models.ForeignKey(Category, verbose_name='Направление вакансии', on_delete=models.CASCADE)
-    img = models.ImageField(verbose_name='Изображение', upload_to=vacancy_img_upload_path, blank=True, null=True, default=None)
+    img = models.ImageField(verbose_name='Изображение', upload_to=vacancy_img_upload_path, blank=True, default='vacansies/vacansy_img/default.jpg')
     title = models.CharField(verbose_name='Название', max_length=255)
 
     # Time
@@ -79,7 +79,7 @@ class Vacancy(models.Model):
     age_max = models.PositiveSmallIntegerField(verbose_name='Максимальный возраст', blank=True, null=True, default=None)
 
     # Location
-    metro = models.ForeignKey(Metro, verbose_name='Округ', on_delete=models.CASCADE)
+    metro = models.ForeignKey(Metro, verbose_name='Метро', on_delete=models.CASCADE)
     address = models.CharField(verbose_name='Адрес', max_length=400)
 
     def __str__(self):
@@ -95,7 +95,7 @@ class Vacancy(models.Model):
 class Request(models.Model):
     vacancy = models.ForeignKey(Vacancy, verbose_name='Вакансия', on_delete=models.CASCADE)
     user = models.ForeignKey(accounts_models.User, verbose_name='Волонтёр', on_delete=models.CASCADE)
-    comment = models.TextField(verbose_name='Сопроводительный комментарий')
+    comment = models.TextField(verbose_name='Сопроводительный комментарий', blank=True)
 
     def __str__(self):
         return f'{self.vacancy} | {self.user}'
