@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure--4xne=@r$7a603+ja7c=k$u_puvua2!df6^c7kjwtlklvw0+c8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '0.0.0.0', '84.201.140.211']
 
 
 # Application definition
@@ -88,7 +88,7 @@ DATABASES = {
         'NAME': 'MOSCOW_CITY_HACK',
         'USER': 'elliot',
         'PASSWORD': 'root',
-        'HOST': '127.0.0.1',
+        'HOST': 'db',
         'PORT': '3306',
     }
 }

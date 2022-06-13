@@ -1,0 +1,9 @@
+venv/
+
+*.tar.gz
+*.jpg
+*.json
+*.pkl
+
+.env
+docker-compose.yaml
