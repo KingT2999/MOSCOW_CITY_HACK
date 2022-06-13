@@ -277,36 +277,24 @@
             <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
-                <div class="popup__contant">
+                <div class="popup__contant" style="padding: 25px;">
+                  <div class="modal_styles">
                   <div class="Help__flex">
                     <div class="">
-                      <div class="popup__title">Нужна товоя помощь</div>
-                      <div class="popup__text">
-                        По близости есть {{qr_code_metro_count}} мероприятия, где твоя помощь будет очень кстати
-                      </div>
-                    </div>
-                    <button type="button" class="btn-close bntn-closs" data-bs-dismiss="modal" aria-label="Close"></button>
+                      <button type="button" class="btn-close bntn-closs" data-bs-dismiss="modal" aria-label="Close"></button>
+                      <div class="popup__title" style="font-weight: bold;">Нужна товоя помощь</div>
+                      
+                     </div>
                   </div>
-                  {% comment %} <img src="{% static 'vacancies/vacancy_detail/img/Frame44.png' %}" alt="" class="metro"> {% endcomment %}
+                  </div>
                   <h3><span style="color: red; font-weight: bold;">M</span> {{qr_code_metro.title}}</h3>
+                  <div class="popup__text">
+                     По близости есть {{qr_code_metro_count}} мероприятия, где твоя помощь будет очень кстати
+                   </div>
                   <div class="popup__list">
-                    {% comment %} <ul class="li-reset">
-                      <li class="popup__svg">
-                        <img src="{% static 'vacancies/vacancy_detail/img/svg/Ani.svg' %}" alt="">
-                        <p class="popup__ivent">5 мероприятия</p>
-                      </li>
-                      <li class="popup__svg">
-                        <img src="{% static 'vacancies/vacancy_detail/img/svg/Eco.svg' %}" alt="">
-                        <p class="popup__ivent">3 мероприятия</p>
-                      </li>
-                      <li class="popup__svg">
-                        <img src="{% static 'vacancies/vacancy_detail/img/svg/Edu.svg' %}" alt="">
-                        <p class="popup__ivent">8 мероприятия</p>
-                      </li>
-                    </ul> {% endcomment %}
                   </div>
                   <a href="?metro={{qr_code_metro.id}}">
-                    <div class="button">
+                    <div class="button container-fluid">
                       <p class="button__text">Продолжить</p>
                     </div>
                   </a>
