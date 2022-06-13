@@ -10,6 +10,11 @@ def vacancy_list(request):
     context['category_list'] = Category.objects.all()
     context['metro_list'] = Metro.objects.all()
 
+    qr_code = request.GET.get('qr_code_metro_id')
+    if qr_code is not None and qr_code != '':
+        context['qr_code_metro'] = get_object_or_404(Metro, id=qr_code)
+        context['qr_code_metro_count'] = Vacancy.objects.filter(metro=context['qr_code_metro']).count()
+
     # Search
     q = request.GET.get('q')
     if q is not None and q != '':

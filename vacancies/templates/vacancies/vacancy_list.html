@@ -18,6 +18,19 @@
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
       <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script><!-- JavaScript Bundle with Popper --><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
       <link rel="stylesheet" href="{% static 'vacancies/vacancy_list/css/main.css' %}">
+   
+   
+   
+   
+      {% comment %} MODAL {% endcomment %}
+      <link rel="stylesheet" href="{% static 'vacancies/vacancy_list/css/modal.css' %}">
+   
+   
+   
+   
+   
+   
+   
    </head>
    <body class="page__body">
       <div class="site-container">
@@ -245,6 +258,54 @@
             </section>
             {% endfor %}
          </main>
+         {% comment %} MODAL {% endcomment %}
+         {% if qr_code_metro %}
+         <section>
+            <script>
+            // после загрузки страницы
+            window.addEventListener('load', function () {
+            
+              // элемент, содержащий контент модального окна (например, имеющий id="modal")
+              const elemModal = document.querySelector('#modal');
+              // активируем элемент в качестве модального окна с параметрами по умолчанию
+              const modal = new bootstrap.Modal(elemModal);
+              // откроем модальное окно
+              modal.show();
+            
+            });
+            </script>
+            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="popup__contant" style="padding: 25px;">
+                  <div class="modal_styles">
+                  <div class="Help__flex">
+                    <div class="">
+                      <button type="button" class="btn-close bntn-closs" data-bs-dismiss="modal" aria-label="Close"></button>
+                      <div class="popup__title" style="font-weight: bold;">Нужна товоя помощь</div>
+                      
+                     </div>
+                  </div>
+                  </div>
+                  <h3><span style="color: red; font-weight: bold;">M</span> {{qr_code_metro.title}}</h3>
+                  <div class="popup__text">
+                     По близости есть {{qr_code_metro_count}} мероприятия, где твоя помощь будет очень кстати
+                   </div>
+                  <div class="popup__list">
+                  </div>
+                  <a href="?metro={{qr_code_metro.id}}">
+                    <div class="button container-fluid">
+                      <p class="button__text">Продолжить</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            </div>
+            </section>
+            {% endif %}
+
+
          <footer class="footer">
             <div class="container"></div>
          </footer>
