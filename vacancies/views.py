@@ -32,12 +32,9 @@ def vacancy_list(request):
         context['vacancy_list'] = context['vacancy_list'].filter(is_online=is_online)
 
     # Metro Filter
-    metro_filter_list = request.GET.getlist('metro')
-    if len(metro_filter_list) > 0:
-        metro_filter = Q()
-        for metro_id in metro_filter_list:
-            metro_filter = metro_filter | Q(metro_id=metro_id)
-        context['vacancy_list'] = context['vacancy_list'].filter(metro_filter)
+    metro_id = request.GET.get('metro')
+    if metro_id is not None and metro_id != '':
+        context['vacancy_list'] = context['vacancy_list'].filter(metro_id=metro_id)
     
     # Age Filter
     is_gt_18 = request.GET.get('is_gt_18') is not None

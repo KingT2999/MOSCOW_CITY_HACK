@@ -245,12 +245,12 @@
   <section>
     <h1 class="help__title Vacancy">Похожие задания</h1>
     <ul class="li-reset d-flex">
-      {% for vacancy in similar_vacancy_list %}
+      {% for s_vacancy in similar_vacancy_list %}
       
         <li class="block-teg-work">
-          <a href="{{vacancy.get_absolute_url}}">
-          <img style="border-radius: 15px;" loading="lazy" src="{{vacancy.img.url}}" class="image" width="236" height="221" alt="">
-          <p class="location__title" style="color: var(--dark-color); font-weight: 700; margin-top: 13px;">{{vacancy.title}}</p>
+          <a href="{{s_vacancy.get_absolute_url}}">
+          <img style="border-radius: 15px;" loading="lazy" src="{{s_vacancy.img.url}}" class="image" width="236" height="221" alt="">
+          <p class="location__title" style="color: var(--dark-color); font-weight: 700; margin-top: 13px;">{{s_vacancy.title}}</p>
           <div class="adr">
               <img loading="lazy" src="{% static 'vacancies/vacancy_detail/img/svg/location(2).svg' %}" class="location2" width="" height="" alt="">
               <p class="location__title" style="color: var(--hz-color); margin: 0;">м. Царицыно, Михневская<br>улица, 8</p>
